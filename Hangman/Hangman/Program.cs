@@ -23,7 +23,15 @@ namespace Hangman
         static void AskForUsersName()
         {
             Console.Write("Enter your name: ");
-            userName = Console.ReadLine();
+            string input = Console.ReadLine();
+
+            if (input.Length < 2)
+            {
+                Console.WriteLine("Name needs to be longer then two characters, please try again.");
+                AskForUsersName();
+            }
+
+            userName = input;
         }
 
         private static void PlayGame()
@@ -41,6 +49,7 @@ namespace Hangman
         static void AskForLetter()
         {
             Console.WriteLine("Asking for letter");
+            nbrOfGuesses++;
         }
 
         private static void EndGame()
