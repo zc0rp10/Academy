@@ -6,6 +6,7 @@ namespace Hangman
     {
         static string userName;
         static int nbrOfGuesses;
+        static string correctWord = "smultron";
 
         static void Main(string[] args)
         {
@@ -43,12 +44,23 @@ namespace Hangman
 
         static void DisplayMaskedWord()
         {
-            Console.WriteLine("Display masked word");
+            foreach (char c in correctWord)
+            {
+                Console.Write("-");
+            }
+            Console.WriteLine();
         }
-        
+
         static void AskForLetter()
         {
-            Console.WriteLine("Asking for letter");
+            string input;
+
+            do
+            {
+                Console.WriteLine("Enter exactly one character: ");
+                input = Console.ReadLine();
+            } while (input.Length != 1);
+
             nbrOfGuesses++;
         }
 
