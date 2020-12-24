@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace Hangman
 {
@@ -6,12 +7,17 @@ namespace Hangman
     {
         static string userName;
         static int nbrOfGuesses;
-        static string correctWord = "smultron";
+        static char[] correctWord = { 's', 'm', 'u', 'l', 't', 'r', 'o', 'n' };
+        static char[] guessedLetters = { '-', '-', '-', '-', '-', '-', '-', '-' };
+        static bool endApp = false;
 
         static void Main(string[] args)
         {
             StartGame();
-            PlayGame();
+            while (!endApp)
+            {
+                PlayGame();
+            }
             EndGame();
         }
 
@@ -37,16 +43,15 @@ namespace Hangman
 
         private static void PlayGame()
         {
-            Console.WriteLine("Play Game");
             DisplayMaskedWord();
             AskForLetter();
         }
 
         static void DisplayMaskedWord()
         {
-            foreach (char c in correctWord)
+            foreach (char c in guessedLetters)
             {
-                Console.Write("-");
+                Console.Write(c);
             }
             Console.WriteLine();
         }
@@ -61,13 +66,24 @@ namespace Hangman
                 input = Console.ReadLine();
             } while (input.Length != 1);
 
+            for (int i = 0; i < correctWord.Length; i++)
+            {
+                if (char.Parse(input) == correctWord[i])
+                {
+                    guessedLetters[i] = char.Parse(input);
+                }
+            }
             nbrOfGuesses++;
+
+            if (guessedLetters.SequenceEqual(correctWord))
+            { 
+                endApp = true;
+            }
         }
 
         private static void EndGame()
         {
             Console.WriteLine($"Thank you {userName} for playing. You guessed {nbrOfGuesses} times.");
-
         }
     }
 }
