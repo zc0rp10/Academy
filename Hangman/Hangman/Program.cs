@@ -5,10 +5,9 @@ namespace Hangman
 {
     class Program
     {
-        static string userName;
         static string correctWord = "smultron";
         static char[] letters;
-        static List<char> guessedLetters = new List<char>();
+        static Player player;
 
         static void Main(string[] args)
         {
@@ -38,7 +37,7 @@ namespace Hangman
                 AskForUsersName();
             }
 
-            userName = input;
+            player = new Player(input);
         }
 
         private static void PlayGame()
@@ -59,7 +58,10 @@ namespace Hangman
             for (int i = 0; i < correctWord.Length; i++)
             {
                 if (guessedLetter == correctWord[i])
+                {
                     letters[i] = guessedLetter;
+                    player.score++;
+                }
             }
         }
 
@@ -83,15 +85,15 @@ namespace Hangman
 
             var letter = input[0];
 
-            if (!guessedLetters.Contains(letter))
-                guessedLetters.Add(letter);
+            if (!player.guessedLetters.Contains(letter))
+                player.guessedLetters.Add(letter);
 
             return input[0];
         }
 
         private static void EndGame()
         {
-            Console.WriteLine($"Thank you for playing {userName}. You needed {guessedLetters.Count} guesses.");
+            Console.WriteLine($"Thank you for playing {player.name}. You needed {player.guessedLetters.Count} guesses. You score was: {player.score}.");
         }
     }
 }
