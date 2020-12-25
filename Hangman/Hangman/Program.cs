@@ -49,16 +49,9 @@ namespace Hangman
                 DisplayMaskedWord();
                 char guessedLetter = AskForLetter();
                 CheckLetter(guessedLetter);
-                TrackUniqueGuesses(guessedLetter);
             } while (correctWord != new string(letters));
 
             Console.Clear();
-        }
-
-        private static void TrackUniqueGuesses(char guessedLetter)
-        {
-            if (!guessedLetters.Contains(guessedLetter))
-                guessedLetters.Add(guessedLetter);
         }
 
         private static void CheckLetter(char guessedLetter)
@@ -87,6 +80,11 @@ namespace Hangman
                 Console.WriteLine("Enter exactly one character: ");
                 input = Console.ReadLine();
             } while (input.Length != 1);
+
+            var letter = input[0];
+
+            if (!guessedLetters.Contains(letter))
+                guessedLetters.Add(letter);
 
             return input[0];
         }
