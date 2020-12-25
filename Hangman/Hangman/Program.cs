@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace Hangman
 {
     class Program
     {
-        static string correctWord = "smultron";
+        static string correctWord;
         static char[] letters;
         static Player player;
 
@@ -18,6 +19,11 @@ namespace Hangman
 
         private static void StartGame()
         {
+            string[] wordsArr = File.ReadAllLines("./RandomWords.txt");
+
+            Random random = new Random();
+            correctWord = wordsArr[random.Next(0, wordsArr.Length)];
+
             letters = new char[correctWord.Length];
             for (int i = 0; i < correctWord.Length; i++)
             {
@@ -93,7 +99,7 @@ namespace Hangman
 
         private static void EndGame()
         {
-            Console.WriteLine($"Thank you for playing {player.Name}. You needed {player.GuessedLetters.Count} guesses. You score was: {player.Score}.");
+            Console.WriteLine($"Thank you for playing {player.Name}! You needed {player.GuessedLetters.Count} guesses. You score was: {player.Score}.");
         }
     }
 }
