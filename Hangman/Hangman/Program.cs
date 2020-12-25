@@ -1,13 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Hangman
 {
     class Program
     {
         static string userName;
-        static int nbrOfGuesses;
         static string correctWord = "smultron";
         static char[] letters;
+        static List<char> guessedLetters = new List<char>();
 
         static void Main(string[] args)
         {
@@ -46,19 +47,26 @@ namespace Hangman
             {
                 Console.Clear();
                 DisplayMaskedWord();
-                char gussedLetter = AskForLetter();
-                CheckLetter(gussedLetter);
+                char guessedLetter = AskForLetter();
+                CheckLetter(guessedLetter);
+                TrackUniqueGuesses(guessedLetter);
             } while (correctWord != new string(letters));
 
             Console.Clear();
         }
 
-        private static void CheckLetter(char gussedLetter)
+        private static void TrackUniqueGuesses(char guessedLetter)
+        {
+            if (!guessedLetters.Contains(guessedLetter))
+                guessedLetters.Add(guessedLetter);
+        }
+
+        private static void CheckLetter(char guessedLetter)
         {
             for (int i = 0; i < correctWord.Length; i++)
             {
-                if (gussedLetter == correctWord[i])
-                    letters[i] = gussedLetter;
+                if (guessedLetter == correctWord[i])
+                    letters[i] = guessedLetter;
             }
         }
 
@@ -80,13 +88,12 @@ namespace Hangman
                 input = Console.ReadLine();
             } while (input.Length != 1);
 
-            nbrOfGuesses++;
             return input[0];
         }
 
         private static void EndGame()
         {
-            Console.WriteLine($"Thank you for playing {userName}. You needed {nbrOfGuesses} guesses.");
+            Console.WriteLine($"Thank you for playing {userName}. You needed {guessedLetters.Count} guesses.");
         }
     }
 }
