@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 
 namespace PreAssignmentNbrTwo
 {
@@ -21,7 +20,7 @@ namespace PreAssignmentNbrTwo
             {
                 // TODO: Dynamically adjust spacing between item.Name and item.Price so it lines up correctly in the columns regardles of
                 // the diffrence of length in item names.
-                Console.WriteLine($"{shoppingList.Ingredients.IndexOf(item) + 1}\t{item.Name}\t\t\t\t{item.Price}kr");
+                Console.WriteLine($"{shoppingList.Ingredients.IndexOf(item) + 1}\t{item.Name}\t\t\t\t{item.Price} kr");
             }
 
             Console.WriteLine();

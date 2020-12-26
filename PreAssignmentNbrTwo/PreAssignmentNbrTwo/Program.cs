@@ -11,10 +11,13 @@ namespace PreAssignmentNbrTwo
         {
             try
             {
+                AppState.Load(shoppingList);
+
                 while (!endApp)
                 {
                     Ui.DrawView(shoppingList);
                     Ui.ListenForKeyPress(shoppingList);
+                    AppState.Save(shoppingList.Ingredients);
                 }
                 // Note: Point to discuss with teacher, all methods in Ui class was previously contained below in the Program class. I decided to move
                 // them into a seperate class to keep each file smaller in terms of lines and more readable. I'm however to sure that the way I went about
