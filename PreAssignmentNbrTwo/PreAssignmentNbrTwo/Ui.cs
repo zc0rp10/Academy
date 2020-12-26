@@ -18,8 +18,8 @@ namespace PreAssignmentNbrTwo
 
             foreach (var item in shoppingList.Ingredients)
             {
-                // TODO: Dynamically adjust spacing between item.Name and item.Price so it lines up correctly in the columns regardles of
-                // the diffrence of length in item names.
+                // TODO: Dynamically adjust spacing between item.Name and item.Price so it lines up correctly in the columns regardless of
+                // the diffrence in length between item names.
                 Console.WriteLine($"{shoppingList.Ingredients.IndexOf(item) + 1}\t{item.Name}\t\t\t\t{item.Price} kr");
             }
 

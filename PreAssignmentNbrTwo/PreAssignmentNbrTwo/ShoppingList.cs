@@ -55,12 +55,15 @@ namespace PreAssignmentNbrTwo
                     Console.WriteLine("> ERROR: The ingredient name needs to contain at least one character, please try again...");
                     Add();
                 }
+                else
+                {
+                    Console.Write("Enter ingredient price: ");
+                    int price = int.Parse(Console.ReadLine());
 
-                Console.Write("Enter ingredient price: ");
-                int price = int.Parse(Console.ReadLine());
+                    Ingredient ingredient = new Ingredient(ingredientName, price);
+                    Ingredients.Add(ingredient);
+                }
 
-                Ingredient ingredient = new Ingredient(ingredientName, price);
-                Ingredients.Add(ingredient);
             }
             catch (FormatException)
             {
