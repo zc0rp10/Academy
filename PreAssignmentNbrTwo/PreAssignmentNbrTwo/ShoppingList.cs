@@ -20,7 +20,7 @@ namespace PreAssignmentNbrTwo
             {
                 Console.Write("Enter new ingredient name: ");
                 string ingredientName = Console.ReadLine();
-                
+
                 if (ingredientName.Length == 0)
                 {
                     Console.WriteLine("> ERROR: The ingredient name needs to contain at least one character, please try again...");
@@ -58,8 +58,8 @@ namespace PreAssignmentNbrTwo
             try
             {
                 Console.Write("Enter the Id of the ingredient you want to remove: ");
-                int ingredientId = int.Parse(Console.ReadLine());
-                Ingredients.RemoveAt(ingredientId - 1);
+                int ingredientId = int.Parse(Console.ReadLine()) - 1;
+                Ingredients.RemoveAt(ingredientId);
             }
             catch (ArgumentOutOfRangeException)
             {
@@ -75,7 +75,40 @@ namespace PreAssignmentNbrTwo
             {
                 Console.WriteLine("> ERROR: Oops, something went wrong...");
                 Console.WriteLine("> ERROR: " + e.Message);
-                Console.ReadKey();
+            }
+        }
+
+        public void Remove(int id)
+        {
+            Ingredients.RemoveAt(id);
+        }
+
+        public void Edit()
+        {
+            // TODO: If possible, refactor function to print out the current values for the user to then edit and confirm to console.
+            try
+            {
+                Console.Write("Enter the Id of the ingredient you want to edit: ");
+                int ingredientId = int.Parse(Console.ReadLine()) - 1;
+
+                Remove(ingredientId);
+                Add();
+
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                Console.WriteLine("> ERROR: You entered an Id that does not exist, please try again.");
+                Remove();
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("> ERROR: The entered Id must be a number, please try again.");
+                Remove();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("> ERROR: Oops, something went wrong...");
+                Console.WriteLine("> ERROR: " + e.Message);
             }
         }
     }

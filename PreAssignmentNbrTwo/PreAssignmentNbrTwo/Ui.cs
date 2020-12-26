@@ -40,7 +40,7 @@ namespace PreAssignmentNbrTwo
                 {
                     case ConsoleKey.A: { shoppingList.Add(); break; }
                     case ConsoleKey.R: { shoppingList.Remove(); ; break; }
-                    case ConsoleKey.E: { Console.WriteLine("Edit Ingredient"); break; }
+                    case ConsoleKey.E: { shoppingList.Edit(); break; }
                     case ConsoleKey.S: { Console.WriteLine("Sort Order"); break; }
                     case ConsoleKey.Escape:
                     case ConsoleKey.Q: { Program.endApp = true; break; }
