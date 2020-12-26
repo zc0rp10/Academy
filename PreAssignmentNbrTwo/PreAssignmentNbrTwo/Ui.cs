@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace PreAssignmentNbrTwo
 {
@@ -41,7 +42,17 @@ namespace PreAssignmentNbrTwo
                     case ConsoleKey.A: { shoppingList.Add(); break; }
                     case ConsoleKey.R: { shoppingList.Remove(); ; break; }
                     case ConsoleKey.E: { shoppingList.Edit(); break; }
-                    case ConsoleKey.S: { Console.WriteLine("Sort Order"); break; }
+                    case ConsoleKey.S: {
+                            Console.Write("Select sort order, P - Price, N - Name: ");
+                            keyInfo = Console.ReadKey(true);
+                            switch (keyInfo.Key)
+                            {
+                                case ConsoleKey.P: { shoppingList.ListOrder = ShoppingList.Order.Price; break; }
+                                case ConsoleKey.N: { shoppingList.ListOrder = ShoppingList.Order.Name; break; }
+                                default: break;
+                            }
+                            break;
+                        }
                     case ConsoleKey.Escape:
                     case ConsoleKey.Q: { Program.endApp = true; break; }
                     default: break;
