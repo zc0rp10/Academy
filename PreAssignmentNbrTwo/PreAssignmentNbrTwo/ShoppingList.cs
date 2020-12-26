@@ -1,11 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace PreAssignmentNbrTwo
 {
     class ShoppingList
     {
-        public List<Ingredient> Ingredients { get; set; }
+        private List<Ingredient> ingredients;
+        public List<Ingredient> Ingredients
+        {
+            get
+            {
+                switch (ListOrder)
+                {
+                    case Order.Price:
+                        {
+                            ingredients = ingredients.OrderBy(i => i.Price).ToList(); break;
+                        }
+                    case Order.Name:
+                        {
+                            ingredients = ingredients.OrderBy(i => i.Name).ToList(); break;
+                        }
+                }
+                return ingredients;
+            }
+            set { ingredients = value; }
+            // Note: Learning point, wasted a lot of time here by not realizing that .OrderBy.ToList() returns a new IEnumerable/List and therefore
+            //       has to be assigned again (ingredients = ing...), rather then mutating/resorting the original List directly.
+        }
+
+        public Order ListOrder;
+        public enum Order
+        {
+            Price,
+            Name
+        }
 
         public ShoppingList()
         {
