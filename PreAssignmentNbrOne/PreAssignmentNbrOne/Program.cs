@@ -8,6 +8,8 @@ namespace PreAssignmentNbrOne
         {
             string name = "Bo";
             int age = 30;
+
+            PrintOut(name, age);
         }
 
         private static bool PrintOut(string name, int age)
