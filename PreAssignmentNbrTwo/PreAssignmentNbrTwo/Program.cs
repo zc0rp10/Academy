@@ -1,5 +1,22 @@
 ﻿using System;
 
+//Utöver projektfilerna så la jag med en gif med screen recording från min dator i zip filen om för att visa alla funktionerna.
+
+//Funktioner:
+//- Användaren navigerar i applikationen med tangentbords tryck för att välja vad hen vill göra härnäst.
+//- Användaren kan Skapa, Uppdatera, Ta Bort ingredienser från shoppinglistan.
+//- Användaren kan sortera ingredienser på shoppinglistan efter Pris (Default) eller Namn.
+//- Användarens ingredienser sparas till en fil (C:\Users\ANVÄNDARE\AppData\Roaming\ShoppingListApp) varje gång det sker en uppdatering. Dessa ingredienser läses sedan in från filen nästa gång programmet startas och man kan fortsätta arbeta där man slutade.
+
+//Classes:
+//Program.cs: Skapar en instance av ShopingList och kör sedan programmets huvudloop.
+//Ingredient.cs: Fungerar som model för hur en ingredient skall se ut som läggs till på shoppinglistan.
+//ShoppingList.cs: Består av en List som äger alla Ingredients på listan, samt funktioner för att lägga till, ta bort editera från den listan.
+//Ui.cs: Ritar upp UI i konsolen på varje loop och lyssnar sedan efter användarens tangentinmatning för att välja vad som skall hända härnäst.
+//AppState.cs: Ansvarar för att spara ned varje gång användaren gör ändringar på shoppinglistan. Samt läsa in ingredienser från föregående session när programmet startas upp nästa gång.
+
+//Övrigt: Jag har skrivit en del kommentarer i koden där problem och tankegångar uppstod som jag gärna skulle diskutera bättre/annorlunda lösningar på vid tillfälle.
+
 namespace PreAssignmentNbrTwo
 {
     class Program

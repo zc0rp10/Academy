@@ -9,7 +9,7 @@ namespace PreAssignmentNbrTwo
     {
         //Note: Point to discuss with teacher, is there a commonly used Class Name for this type of class that aims to persist application state?
         static string directoryPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"/ShoppingListApp";
-        static string filePath = directoryPath + "/data.txt";
+        static string filePath = directoryPath + "/data.csv";
 
         public static void Save(List<Ingredient> shoppingList)
         {
