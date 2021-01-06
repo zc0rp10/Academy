@@ -39,7 +39,6 @@ namespace WordCounterApp
             this.btn_createWordList = new System.Windows.Forms.Button();
             this.btn_sortWordList = new System.Windows.Forms.Button();
             this.btn_countWords = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
             this.SuspendLayout();
             // 
@@ -137,15 +136,6 @@ namespace WordCounterApp
             this.btn_countWords.UseVisualStyleBackColor = true;
             this.btn_countWords.Click += new System.EventHandler(this.btn_countWords_Click);
             // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(896, 38);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(103, 29);
-            this.button2.TabIndex = 10;
-            this.button2.Text = "Sort";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
             // listView1
             // 
             this.listView1.HideSelection = false;
@@ -161,7 +151,6 @@ namespace WordCounterApp
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1065, 581);
             this.Controls.Add(this.listView1);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.btn_countWords);
             this.Controls.Add(this.btn_sortWordList);
             this.Controls.Add(this.btn_createWordList);
@@ -191,7 +180,6 @@ namespace WordCounterApp
         private System.Windows.Forms.Button btn_createWordList;
         private System.Windows.Forms.Button btn_sortWordList;
         private System.Windows.Forms.Button btn_countWords;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ListView listView1;
     }
 }
