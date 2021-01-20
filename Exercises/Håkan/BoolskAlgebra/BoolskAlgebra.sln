@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoolskAlgebra", "BoolskAlgebra\BoolskAlgebra.csproj", "{B69B8009-97BD-4C1B-82AD-B0998EBAB312}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B69B8009-97BD-4C1B-82AD-B0998EBAB312}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B69B8009-97BD-4C1B-82AD-B0998EBAB312}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B69B8009-97BD-4C1B-82AD-B0998EBAB312}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B69B8009-97BD-4C1B-82AD-B0998EBAB312}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {23D1A65C-CB44-4F55-86E3-6CE061D0A068}
+	EndGlobalSection
+EndGlobal
