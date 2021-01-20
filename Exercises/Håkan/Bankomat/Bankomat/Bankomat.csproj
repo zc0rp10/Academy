@@ -5,4 +5,10 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Reference Include="bflibcs">
+      <HintPath>..\..\..\..\..\NuGet\netcoreapp3.1\bflibcs.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

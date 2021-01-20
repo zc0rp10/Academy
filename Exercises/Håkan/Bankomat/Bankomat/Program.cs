@@ -18,11 +18,11 @@ namespace Bankomat
 
         static void Main(string[] args)
         {
-
+            Konto konto = new Konto();
             while (!quit)
             {
                 DrawUI();
-                ListenForKeyPress();
+                ListenForKeyPress(konto);
                
             };
         }
@@ -30,8 +30,8 @@ namespace Bankomat
         private static void DrawUI()
         {
             Console.Clear();
-            Console.WriteLine("Welcome to my ATM");
-            Console.WriteLine("-----------------");
+            Console.WriteLine("   Swedbank ATM   ");
+            Console.WriteLine("------------------");
             Console.WriteLine();
             Console.WriteLine("[I]nsättning");
             Console.WriteLine("[U]ttag");
@@ -41,7 +41,7 @@ namespace Bankomat
             Console.WriteLine("Choose one of the above options..");
         }
 
-        private static void ListenForKeyPress()
+        private static void ListenForKeyPress(Konto konto)
         {
             {
                 ConsoleKeyInfo keyInfo;
@@ -49,9 +49,9 @@ namespace Bankomat
 
                 switch (keyInfo.Key)
                 {
-                    case ConsoleKey.I: { Console.WriteLine("Insättning"); ; break; }
-                    case ConsoleKey.U: { Console.WriteLine("Uttag"); ; break; }
-                    case ConsoleKey.S: { Console.WriteLine("Saldo"); break; }
+                    case ConsoleKey.I: { konto.Deposit(); ; break; }
+                    case ConsoleKey.U: { konto.Withdraw(); ; break; }
+                    case ConsoleKey.S: { konto.PrintHistory(); break; }
                     case ConsoleKey.A: { Program.quit = true; break; }
                     default: break;
                 }
