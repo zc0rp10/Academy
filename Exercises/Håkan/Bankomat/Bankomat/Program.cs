@@ -49,9 +49,9 @@ namespace Bankomat
 
                 switch (keyInfo.Key)
                 {
-                    case ConsoleKey.I: { konto.Deposit(); ; break; }
-                    case ConsoleKey.U: { konto.Withdraw(); ; break; }
-                    case ConsoleKey.S: { konto.PrintHistory(); break; }
+                    case ConsoleKey.I: { Console.Beep(); konto.Deposit(); ; break; }
+                    case ConsoleKey.U: { Console.Beep(); konto.Withdraw(); ; break; }
+                    case ConsoleKey.S: { Console.Beep(); konto.PrintHistory(); break; }
                     case ConsoleKey.A: { Program.quit = true; break; }
                     default: break;
                 }
