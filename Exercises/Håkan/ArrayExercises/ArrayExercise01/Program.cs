@@ -13,25 +13,25 @@ namespace ArrayExercise01
             // Använd inte den statiska metoden Array.Reverse() för att
             // implementera metoden ReverseArray.
             int[] arr;
-            arr = new int[5] { 1, 2, 3, 4, 5 };
+            arr = new int[6] { 1, 2, 3, 4, 5, 6 };
             //ReverseArray(arr);
 
             // Skriv en metod med namnet PushLeft som tar en array-parameter och en int-parametrar. PushLeft ska
             // flytta elementen i array-parametern ett visst antal steg till vänster i array:en. Antalet steg anges av
             // int-parametern. Exempel: PushLeft(arr, 2). Före: [1][2][3][4][5]. Efter: [3][4][5][4][5].
             arr = new int[6] { 1, 2, 3, 4, 5, 6 };
-            //PushLeft(arr, 5);
+            //PushLeft(arr, 2);
 
             // Skriv en metod med namnet PushRight som tar en array-parameter och en int-parametrar. PushRight ska
             // flytta elementen i array-parametern ett visst antal steg till höger i array:en. Antalet steg anges av
             // int-parametern. Exempel: PushRight(arr, 2). Före: [1][2][3][4][5]. Efter: [1][2][1][2][3].
             arr = new int[5] { 1, 2, 3, 4, 5 };
-            //PushRight(arr, 2);
+            PushRight(arr, 2);
 
             // Skriv en metod med namnet SwapPairs som tar en array-parameter. SwapPairs ska byta plats på elementen
             // par för par.
             // Exempel: SwapPairs(arr). Före: [1][2][3][4][5]. Efter: [2][1][4][3][5].
-            arr = new int[5] { 1, 2, 3, 4, 5 };
+            arr = new int[6] { 1, 2, 3, 4, 5, 6 };
             //SwapPairs(arr);
 
             // Skriv en metod med namnet IsPalindrome som tar en char array
@@ -42,7 +42,7 @@ namespace ArrayExercise01
             // metoden returnera true och i annat fall false. Använda inte
             // den statiska metoden Array.Reverse() för att implementera
             // metoden IsPalindrome.
-            //string s = "Naturrutan";
+            //string s = "hehr";
             //if (IsPalindrome(s.ToLower().ToCharArray()))
             //    Console.WriteLine($"Ordet \"{s}\" är ett palindrom.");
             //else
@@ -52,22 +52,29 @@ namespace ArrayExercise01
             // Tilldela var tredje element ett inkrementellt värde av 1 med start från 1.
             // Exempel: InitArray1(intArr). Före: [0][0][0][0][0][0][0][0][0]. Efter: [0][0][1][0][0][2][0][0][3].
             int[] intArr = new int[12];
-            InitArr1(intArr);
+            //InitArr1(intArr);
             Console.ReadKey();
         }
         private static void ReverseArray(int[] arr)
         {
-            int[] newArr = new int[arr.Length];
-
-            for (int i = 0; i < arr.Length; i++)
+            for (int i = 0; i < arr.Length / 2; i++)
             {
-                newArr[i] = arr[(arr.Length - 1) - i];
+                int x = arr[i];
+                int y = arr[arr.Length - i - 1];
+
+                arr[i] = y;
+                arr[arr.Length - i - 1] = x;
             }
         }
 
         private static void PushLeft(int[] arr, int step)
         {
-            for (int i = 0; i < arr.Length - step; i++)
+            // int-parametern. Exempel: PushLeft(arr, 2). Före: [1][2][3][4][5]. Efter: [3][4][5][4][5].
+            //for (int i = 0; i < arr.Length - step; i++)
+            //{
+            //    arr[i] = arr[i + step];
+            //}
+            for (int i = 0; i < arr.Length-step; i++)
             {
                 arr[i] = arr[i + step];
             }
@@ -76,11 +83,10 @@ namespace ArrayExercise01
         private static void PushRight(int[] arr, int step)
         {
             // int-parametern. Exempel: PushRight(arr, 2). Före: [1][2][3][4][5]. Efter: [1][2][1][2][3].
-            for (int i = arr.Length - 1; i - step >= 0; i--)
+            for (int i = arr.Length - 1; i >= 0 + step; i--)
             {
-                arr[i] = arr[i - step];
+                arr[i] = arr[i-step];
             }
-
         }
 
         private static void SwapPairs(int[] arr)
@@ -89,39 +95,24 @@ namespace ArrayExercise01
             // par för par.
             // Exempel: SwapPairs(arr). Före: [1][2][3][4][5]. Efter: [2][1][4][3][5].
 
-            for (int i = 0; i < arr.Length; i += 2)
+            for (int i = 0; i < arr.Length - 1; i += 2)
             {
-                if (i + 1 < arr.Length)
-                {
+                int x = arr[i];
+                int y = arr[i + 1];
 
-                    int x = arr[i];
-                    int y = arr[i + 1];
-
-                    arr[i + 1] = x;
-                    arr[i] = y;
-                }
+                arr[i + 1] = x;
+                arr[i] = y;
             }
         }
 
         private static bool IsPalindrome(char[] chars)
         {
-            string normal = "";
-            string reverse = "";
-
             for (int i = 0; i < chars.Length; i++)
             {
-                normal += chars[i];
+                if (chars[i] != chars[chars.Length - i - 1])
+                    return false;
             }
-
-            for (int i = chars.Length - 1; i >= 0; i--)
-            {
-                reverse += chars[i];
-            }
-            if (normal == reverse)
-                return true;
-
-            return false;
-
+            return true;
         }
 
         private static void InitArr1(int[] intArr)
@@ -130,16 +121,11 @@ namespace ArrayExercise01
             // Tilldela var tredje element ett inkrementellt värde av 1 med start från 1.
             // Exempel: InitArray1(intArr). Före: [0][0][0][0][0][0][0][0][0]. Efter: [0][0][1][0][0][2][0][0][3].
 
-            int ink = 1;
+            int inc = 1;
             for (int i = 0; i < intArr.Length; i++)
             {
-                if ((i+1) % 3 == 0)
-                    intArr[i] = +ink++;
-            }
-
-            foreach (var item in intArr)
-            {
-                Console.Write($"[{item}]");
+                if ((i + 1) % 3 == 0)
+                    intArr[i] = inc++;
             }
         }
     }
