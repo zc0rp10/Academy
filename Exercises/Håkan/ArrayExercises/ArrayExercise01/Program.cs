@@ -55,6 +55,7 @@ namespace ArrayExercise01
             //InitArr1(intArr);
             Console.ReadKey();
         }
+
         private static void ReverseArray(int[] arr)
         {
             for (int i = 0; i < arr.Length / 2; i++)
