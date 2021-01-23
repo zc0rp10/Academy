@@ -16,6 +16,7 @@ namespace StringArrManipulation
 
             Console.Write("Enter the name you want to remove: ");
             string name = Console.ReadLine();
+            
 
             names = RemoveName(names, name);
 
@@ -43,6 +44,7 @@ namespace StringArrManipulation
                 temp[i] = names[i];
             }
             return temp;
+            
         }
 
         private static string[] RemoveName(string[] names, string name)

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace NotAnotherOtherRPG
+namespace NotAnotherRPG
 {
     class Being
     {
