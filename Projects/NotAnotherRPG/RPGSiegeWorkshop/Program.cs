@@ -11,7 +11,7 @@ namespace RPGSiegeWorkshop
         {
             //RepeatCharacter("a", 95);
             //CountCharacter("");
-            ASCIItoArray("value");
+            ASCIItoArray("dod");
             //Build2D(95);
         }
 
@@ -28,7 +28,7 @@ namespace RPGSiegeWorkshop
 
         private static void ASCIItoArray(string value)
         {
-            string input = @"c:\temp\NotAnotherRPG\test.txt";
+            string input = @"c:\temp\NotAnotherRPG\asciiIN.txt";
             string output = @"c:\temp\NotAnotherRPG\" + value + ".txt";
             string[] readText = File.ReadAllLines(input); // Reads file one line at a time. Saves each line as a seperate string in an array of strings.
             var stringList = new List<string>();

@@ -8,11 +8,9 @@ namespace DungeonsOfDoom
 {
     abstract class Monster : Character
     {
-        protected Monster(int health, int strength, string name) : base(health, strength)
+        protected Monster(string name, int health, int strength) : base(name, health, strength)
         {
-            Name = name;
+            
         }
-
-        public string Name { get; set; }
     }
 }
