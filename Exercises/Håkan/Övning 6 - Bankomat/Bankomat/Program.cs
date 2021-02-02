@@ -1,5 +1,6 @@
 ﻿using System;
 
+
 namespace Bankomat
 {
     class Program

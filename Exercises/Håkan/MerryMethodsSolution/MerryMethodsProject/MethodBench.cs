@@ -32,25 +32,18 @@ namespace MerryMethodsProject
         public bool FourthMethod()
         {
             ConsoleKeyInfo cki = Console.ReadKey(true);
-            bool isValid = false;
 
             do
             {
                 if (cki.Key == ConsoleKey.S)
                 {
-                    isValid = true;
                     return true;
                 }
                 else if (cki.Key == ConsoleKey.W)
                 {
-                    isValid = true;
                     return false;
                 }
-                else
-                    isValid = false;
-
-            } while (!isValid);
-            return false;
+            } while (true);
         }
 
         public Tuple<string, bool> SixthMethod()
@@ -61,6 +54,10 @@ namespace MerryMethodsProject
             var tuple = new Tuple<string, bool>(Name, LengthyName);
             
             return tuple;
+
+            bool loggedIn = true;
+            string msg = loggedIn ? "Log Out" : "Log In";
+            Console.WriteLine(msg);
         }
     }
 }

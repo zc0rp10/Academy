@@ -8,7 +8,7 @@ namespace NotAnotherRPG
     {
         Fighter,
         Thief,
-        Mage,
+        RedMage,
     }
 
     class Player : Being

@@ -38,13 +38,48 @@ namespace NotAnotherRPG
         private void Update()
         {
             ConsoleKeyInfo cki;
-            if (scene != Scene.Starting)
-                cki = Console.ReadKey(true);
+
+            switch (scene)
+            {
+                case Scene.Starting:
+                    {
+
+                    }
+                    break;
+                case Scene.Paused:
+                    {
+
+                    }
+                    break;
+                case Scene.MainMenu:
+                    {
+                        cki = Console.ReadKey(true);
+                        if (cki.Key == ConsoleKey.N)
+                            scene = Scene.CharacterCreation;
+                        if (cki.Key == ConsoleKey.C)
+                            Console.WriteLine("Continue");
+                    }
+                    break;
+                case Scene.CharacterCreation:
+                    {
+                        Console.WriteLine("Select a class");
+                        Console.WriteLine("[F]ighter");
+                        Console.WriteLine("[T]hief");
+                        Console.WriteLine("[R]ed Mage");
+                    }
+                    break;
+                case Scene.Battle:
+                    {
+
+                    }
+                    break;
+            }
 
         }
 
         private void Draw()
         {
+            Console.Clear();
             switch (scene)
             {
                 case Scene.Starting:
@@ -55,11 +90,18 @@ namespace NotAnotherRPG
                     break;
                 case Scene.MainMenu:
                     {
-                        
+                        Renderer.MainMenu();
+                    }
+                    break;
+                case Scene.CharacterCreation:
+                    {
 
                     }
                     break;
                 case Scene.Battle:
+                    {
+
+                    }
                     break;
             }
         }
@@ -76,7 +118,7 @@ namespace NotAnotherRPG
             {
                 case Job.Fighter: { new Player("Bertil", 200, 10, 10, 10, Job.Fighter); } break;
                 case Job.Thief: { new Player("Bertil", 200, 10, 10, 10, Job.Fighter); } break;
-                case Job.Mage: { new Player("Bertil", 200, 10, 10, 10, Job.Fighter); } break;
+                case Job.RedMage: { new Player("Bertil", 200, 10, 10, 10, Job.Fighter); } break;
             }
         }
 
@@ -92,6 +134,7 @@ namespace NotAnotherRPG
         Starting,
         Paused,
         MainMenu,
+        CharacterCreation,
         Battle,
     }
 

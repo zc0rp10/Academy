@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotAnotherRPG", "NotAnotherOtherRPG\NotAnotherRPG.csproj", "{EA11A77D-30D4-41D0-9641-97800742FD4D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotAnotherRPG", "NotAnotherRPG\NotAnotherRPG.csproj", "{EA11A77D-30D4-41D0-9641-97800742FD4D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPGSiegeWorkshop", "RPGSiegeWorkshop\RPGSiegeWorkshop.csproj", "{AF93173A-EF9E-4DF2-959C-C259A75968E0}"
 EndProject

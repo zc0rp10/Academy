@@ -23,7 +23,7 @@ namespace MerryMethodsProject
 
             // Third
             Console.Write("Print in uppercase (y/n)?: ");
-            bool userBool = (Console.ReadLine() == "y") ? true : false;
+            bool userBool = (Console.ReadLine().ToLower() == "y") ? true : false;
             methodBench.ThirdMethod(userInput, userBool);
 
             // Fourth

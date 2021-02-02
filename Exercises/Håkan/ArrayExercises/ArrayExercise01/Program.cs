@@ -71,10 +71,6 @@ namespace ArrayExercise01
         private static void PushLeft(int[] arr, int step)
         {
             // int-parametern. Exempel: PushLeft(arr, 2). Före: [1][2][3][4][5]. Efter: [3][4][5][4][5].
-            //for (int i = 0; i < arr.Length - step; i++)
-            //{
-            //    arr[i] = arr[i + step];
-            //}
             for (int i = 0; i < arr.Length-step; i++)
             {
                 arr[i] = arr[i + step];
