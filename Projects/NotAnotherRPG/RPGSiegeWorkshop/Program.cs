@@ -11,7 +11,7 @@ namespace RPGSiegeWorkshop
         {
             //RepeatCharacter("a", 95);
             //CountCharacter("");
-            ASCIItoArray("dod");
+            ASCIItoArray("dodsynop");
             //Build2D(95);
         }
 

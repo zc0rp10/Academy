@@ -10,7 +10,7 @@ namespace DungeonsOfDoom
     {
         protected Monster(string name, int health, int strength) : base(name, health, strength)
         {
-            
+
         }
     }
 }

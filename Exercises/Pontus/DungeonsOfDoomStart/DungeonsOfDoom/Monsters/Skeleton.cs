@@ -11,9 +11,12 @@ namespace DungeonsOfDoom
 
         }
 
-        public override int Attack()
+        override public int Attack(Character opponent)
         {
-            return base.Attack() / 2;
+            if (Health < opponent.Health / 10)
+                return base.Attack(opponent) / 4;
+            else
+                return base.Attack(opponent) / 2;
         }
     }
 

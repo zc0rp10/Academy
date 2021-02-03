@@ -18,6 +18,7 @@ namespace DungeonsOfDoom
         {
             TitleScreen();
             CreatePlayer();
+            DisplaySynopsis();
             CreateWorld();
             new Sword(Items.SwordType.Copper);
 
@@ -32,7 +33,20 @@ namespace DungeonsOfDoom
             GameOver();
         }
 
-
+        private void DisplaySynopsis()
+        {
+            Console.Clear();
+            Console.WriteLine("+--------------------------------------------------------------------------------------------+");
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            Console.Write("                                                                                              \n                                                                                              \n                                                                                              \n                                                                                              \n                                                                                              \n                                                                                              \n                                                                                              \n                                                                                              \n                                                                                              \n                                                                                              \n    Dungeons of Doom is a psychological dungeon crawler where deranged former programming   \n    student ");
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.Write(player.Name);
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            Console.WriteLine(" battles his way through the rooms of the asylum, looting items in search\n    of the legendary God Eater Sword. So he can once and for all slay his former master and      \n    teacher PontWitt - and in so graduate from the Academy!                                   \n                                                                                              \n                                                                                              \n                                                                                              \n                                                                                              \n                                                                                              \n                                                                                              \n                                                                                              \n                                                                                              \n");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("+--------------------------------------------------------------------------------------------+");
+            Console.ReadKey(true);
+        }
 
         private void RoomEvent()
         {
@@ -41,6 +55,7 @@ namespace DungeonsOfDoom
             if (currentRoom.Item != null)
             {
                 player.Backpack.Add(currentRoom.Item);
+                currentRoom.Item.AffectPlayer(player);
                 currentRoom.Item = null;
             }
             else if (currentRoom.Monster != null)
@@ -57,14 +72,19 @@ namespace DungeonsOfDoom
 
         private bool Battle(Player player, Monster monster)
         {
-            // TODO: Return the Character that won, or a bool true, if player won.
             Console.Clear();
             Console.WriteLine("====== BATTLE ======");
             do
             {
-                monster.TakeDamage(player.Attack());
-                player.TakeDamage(monster.Attack());
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                int dmg = player.TakeDamage(monster.Attack(player));
+                Console.WriteLine($"{monster.Name} attacks {player.Name} for {dmg} damage.");
 
+                Console.ForegroundColor = ConsoleColor.DarkGreen;
+                dmg = monster.TakeDamage(player.Attack(monster));
+                Console.WriteLine($"{player.Name} attacks {monster.Name} for {dmg} damage.");
+                Console.ReadKey(true);
+                Console.ForegroundColor = ConsoleColor.White;
             } while (player.Health > 0 && monster.Health > 0);
 
             if (player.Health <= 0)
@@ -82,7 +102,7 @@ namespace DungeonsOfDoom
                 Console.ForegroundColor = ConsoleColor.White;
                 name = Console.ReadLine();
             } while (name.Length == 0); ;
-            player = new Player(name, 300, 10, 10, 0, 0);
+            player = new Player(name, 300, 10, 50, 0, 0);
         }
 
         private void CreateWorld()
@@ -94,12 +114,19 @@ namespace DungeonsOfDoom
                 {
                     world[x, y] = new Room();
 
-                    int percentage = random.Next(0, 100);
-                    if (percentage < 10) // 6 - 10
-                        world[x, y].Monster = RandomMonster();
-                    else if (percentage < 20) // 11 - 20
-                        world[x, y].Item = RandomItem();
-                    // 21 - 99 = Tomt Rum
+                    if (y == world.GetLength(1) - 1 && x == world.GetLength(0) - 1)
+                    {
+                        world[x, y].Monster = new Monsters.PontWitt(1000, 100);
+                    }
+                    else
+                    {
+                        int percentage = random.Next(0, 100);
+                        if (percentage < 10) // 6 - 10
+                            world[x, y].Monster = RandomMonster();
+                        else if (percentage < 20) // 11 - 20
+                            world[x, y].Item = RandomItem();
+                        // 21 - 99 = Tomt Rum
+                    }
                 }
             }
         }
@@ -108,23 +135,25 @@ namespace DungeonsOfDoom
         {
             int percentage = random.Next(0, 100);
 
-            if (percentage < 1)
-                return new Werewolf(100, 20, true);
-            else if (percentage < 11)
-                return new Werewolf(100, 20, false);
+            if (percentage < 11)
+                return new Werewolf(200, 30);
             else
-                return new Skeleton(100, 10);
+                return new Skeleton(100, 20);
         }
         private Item RandomItem()
         {
             int percentage = random.Next(0, 100);
 
             if (percentage < 10)
+                return new Sword(Items.SwordType.GodEater);
+            else if (percentage < 20)
                 return new Sword(Items.SwordType.Iron);
-            else if (percentage < 25)
+            else if (percentage < 45)
                 return new Sword(Items.SwordType.Copper);
-            else if (percentage < 50)
-                return new Potion(Items.PotionType.Health);
+            else if (percentage < 85)
+                return new Potion(/*Items.PotionType.Health*/);
+            else if (percentage < 95)
+                return new Poison();
             else
                 return new Items.Junk("Worthless Junk");
         }
@@ -139,14 +168,17 @@ namespace DungeonsOfDoom
                     Room room = world[x, y];
                     if (player.X == x && player.Y == y)
                     {
-                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
                         Console.Write("P");
                         Console.ForegroundColor = ConsoleColor.White;
 
                     }
 
                     else if (room.Monster != null)
-                        Console.Write("M");
+                        if (room.Monster.Name == "PontWitt")
+                            Console.Write("B");
+                        else
+                            Console.Write("M");
                     else if (room.Item != null)
                         Console.Write("I");
                     else
@@ -161,6 +193,7 @@ namespace DungeonsOfDoom
             Console.WriteLine();
             Console.WriteLine("====== PLAYER ======");
             Console.WriteLine($"Health: {player.Health}");
+            Console.WriteLine($"Strength: {player.Strength}");
             Console.WriteLine();
             Console.WriteLine("===== BACKPACK =====");
 
@@ -176,7 +209,12 @@ namespace DungeonsOfDoom
 
             foreach (var item in inventory)
             {
-                if (item.Key == "Iron Sword")
+                if (item.Key == "GodEater Sword")
+                {
+                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                    Console.WriteLine($"{item.Key} x {item.Value}");
+                }
+                else if (item.Key == "Iron Sword")
                 {
                     Console.ForegroundColor = ConsoleColor.Blue;
                     Console.WriteLine($"{item.Key} x {item.Value}");
@@ -257,8 +295,6 @@ namespace DungeonsOfDoom
                               { "+","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","+"}
             };
 
-
-
             FxPlayer.PlayTheme();
             Console.Clear();
 
@@ -266,7 +302,9 @@ namespace DungeonsOfDoom
             int colLength = string2DArr.GetLength(1);
             for (int i = 0; i < rowLength; i++)
             {
-                if (i == 0 || i == 24)
+                if (i == 0 || i == 23)
+                    Console.ForegroundColor = ConsoleColor.White;
+                else
                     Console.ForegroundColor = ConsoleColor.DarkRed;
                 for (int j = 0; j < colLength; j++)
                 {

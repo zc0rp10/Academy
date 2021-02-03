@@ -19,9 +19,16 @@ namespace DungeonsOfDoom
                 Damage = random.Next(5, 11);
             else if (type == SwordType.Iron)
                 Damage = random.Next(11, 21);
+            else if (type == SwordType.GodEater)
+                Damage = 9001;
         }
 
         public int Damage { get; set; }
         public SwordType Type { get; set; }
+
+        public override void AffectPlayer(Player player)
+        {
+            player.Strength += Damage;
+        }
     }
 }

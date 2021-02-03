@@ -9,5 +9,9 @@ namespace DungeonsOfDoom.Items
         public Junk(string name, int value = 0) : base(name, value)
         {
         }
+
+        public override void AffectPlayer(Player player)
+        {
+        }
     }
 }

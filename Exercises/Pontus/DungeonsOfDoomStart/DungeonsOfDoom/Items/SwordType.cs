@@ -7,6 +7,7 @@ namespace DungeonsOfDoom.Items
     public enum SwordType
     {
         Copper,
-        Iron
+        Iron,
+        GodEater
     }
 }
