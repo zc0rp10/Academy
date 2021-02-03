@@ -8,6 +8,7 @@ namespace DungeonsOfDoom
 {
     class Player : Character
     {
+        // TODO: Implement a use Potion method.
         public Player(string name, int health, int magic, int strength, int x, int y) : base(name, health, strength)
         {
             Health = health;

@@ -12,7 +12,7 @@ namespace DungeonsOfDoom
         Player player;
         Room[,] world;
         Random random = new Random();
-        
+
 
         public void Play()
         {
@@ -32,7 +32,7 @@ namespace DungeonsOfDoom
             GameOver();
         }
 
-        
+
 
         private void RoomEvent()
         {
@@ -49,7 +49,7 @@ namespace DungeonsOfDoom
                 if (victory)
                 {
                     currentRoom.Monster = null;
-                    Console.WriteLine("Congrats you won!");
+                    Console.WriteLine($"{player.Name} won the battle!");
                     Console.ReadKey();
                 }
             }
@@ -75,8 +75,13 @@ namespace DungeonsOfDoom
 
         private void CreatePlayer()
         {
-            Console.WriteLine("Enter your name and press enter.. ");
-            string name = Console.ReadLine();
+            string name;
+            do
+            {
+                Console.Write("Enter your name and press enter..\n> ");
+                Console.ForegroundColor = ConsoleColor.White;
+                name = Console.ReadLine();
+            } while (name.Length == 0); ;
             player = new Player(name, 300, 10, 10, 0, 0);
         }
 
@@ -253,8 +258,10 @@ namespace DungeonsOfDoom
             };
 
 
-            
+
             FxPlayer.PlayTheme();
+            Console.Clear();
+
             int rowLength = string2DArr.GetLength(0);
             int colLength = string2DArr.GetLength(1);
             for (int i = 0; i < rowLength; i++)
