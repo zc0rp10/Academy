@@ -352,10 +352,5 @@ namespace DungeonsOfDoom
             }
             Console.ForegroundColor = ConsoleColor.DarkGray;
         }
-
-        public static void playSound(SoundPlayer s)
-        {
-            s.PlaySync();
-        }
     }
 }
