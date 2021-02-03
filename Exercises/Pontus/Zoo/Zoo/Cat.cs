@@ -6,7 +6,7 @@ namespace Zoo
 {
     class Cat : Animal
     {
-        public Cat() : base(4.50)
+        public Cat() : base(4)
         {
         }
 

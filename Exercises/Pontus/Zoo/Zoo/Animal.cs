@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Zoo
 {
-    abstract class Animal
+    abstract class Animal : IEatable
     {
         public double Weight { get; set; }
 
@@ -13,7 +13,7 @@ namespace Zoo
             Weight = weight;
         }
 
-        public virtual void Eat(Animal food)
+        public virtual void Eat(IEatable food)
         {
             Weight += food.Weight;
         }

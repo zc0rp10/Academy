@@ -14,10 +14,13 @@ namespace Zoo
 
             foreach (var animal in animals)
             {
-                var lunch = new Dog(1);
+                Grass lunch = new Grass(0.8);
+                //var lunch = new Dog(1);
                 animal.Eat(lunch);
                 Console.WriteLine(animal);
             }
+
+            TextUtils.Animate("Welcome to the jungle...");
         }
     }
 }

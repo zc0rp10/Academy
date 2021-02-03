@@ -1,9 +1,15 @@
-﻿using System;
+﻿using DungeonsOfDoom.Utils;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Media;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using WMPLib;
+
+
 
 namespace DungeonsOfDoom
 {
@@ -12,7 +18,10 @@ namespace DungeonsOfDoom
         Player player;
         Room[,] world;
         Random random = new Random();
-
+        FxPlayer bgMusic = new FxPlayer();
+        FxPlayer fxPlayer = new FxPlayer();
+        int nbrOfMonsters = 0;
+        
 
         public void Play()
         {
@@ -29,6 +38,8 @@ namespace DungeonsOfDoom
                 DisplayStats();
                 AskForMovement();
                 RoomEvent();
+                if (nbrOfMonsters == 0)
+                    GameWon();
             } while (player.Health > 0);
             GameOver();
         }
@@ -38,14 +49,21 @@ namespace DungeonsOfDoom
             Console.Clear();
             Console.WriteLine("+--------------------------------------------------------------------------------------------+");
             Console.ForegroundColor = ConsoleColor.DarkGray;
-            Console.Write("                                                                                              \n                                                                                              \n                                                                                              \n                                                                                              \n                                                                                              \n                                                                                              \n                                                                                              \n                                                                                              \n                                                                                              \n                                                                                              \n    Dungeons of Doom is a psychological dungeon crawler where deranged former programming   \n    student ");
+            ConsoleGameUtils.RollingText("                                                                                              \n                                                                                              \n                                                                                              \n                                                                                              \n                                                                                              \n                                                                                              \n                                                                                              \n                                                                                              \n                                                                                              \n                                                                                              \n    Dungeons of Doom is a psychological dungeon crawler where deranged former programming   \n    student ", 50);
             Console.ForegroundColor = ConsoleColor.DarkRed;
-            Console.Write(player.Name);
+            ConsoleGameUtils.RollingText(player.Name);
             Console.ForegroundColor = ConsoleColor.DarkGray;
-            Console.WriteLine(" battles his way through the rooms of the asylum, looting items in search\n    of the legendary God Eater Sword. So he can once and for all slay his former master and      \n    teacher PontWitt - and in so graduate from the Academy!                                   \n                                                                                              \n                                                                                              \n                                                                                              \n                                                                                              \n                                                                                              \n                                                                                              \n                                                                                              \n                                                                                              \n");
+            ConsoleGameUtils.RollingText(" battles their way through the rooms of the asylum, looting items in search\n    of the legendary ");
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            ConsoleGameUtils.RollingText("God Eater");
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            ConsoleGameUtils.RollingText(" sword. So he can once and for all slay his former master and      \n    teacher PontWitt - and in so graduate from the ");
+            Console.ForegroundColor = ConsoleColor.Green;
+            ConsoleGameUtils.RollingText("Academy!                                   \n                                                                                              \n                                                                                              \n                                                                                              \n                                                                                              \n                                                                                              \n                                                                                              \n                                                                                              \n                                                                                              \n", 75);
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("+--------------------------------------------------------------------------------------------+");
             Console.ReadKey(true);
+            
         }
 
         private void RoomEvent()
@@ -63,12 +81,20 @@ namespace DungeonsOfDoom
                 bool victory = Battle(player, currentRoom.Monster);
                 if (victory)
                 {
+                    if (currentRoom.Monster.Name == "PontWitt")
+                    {
+                        GameWon();
+                    }
+                    else
+                        Console.WriteLine($"{player.Name} won the battle!");
+
                     currentRoom.Monster = null;
-                    Console.WriteLine($"{player.Name} won the battle!");
+                    nbrOfMonsters--;
                     Console.ReadKey();
                 }
             }
         }
+
 
         private bool Battle(Player player, Monster monster)
         {
@@ -76,6 +102,7 @@ namespace DungeonsOfDoom
             Console.WriteLine("====== BATTLE ======");
             do
             {
+                fxPlayer.PlayHit();
                 Console.ForegroundColor = ConsoleColor.DarkRed;
                 int dmg = player.TakeDamage(monster.Attack(player));
                 Console.WriteLine($"{monster.Name} attacks {player.Name} for {dmg} damage.");
@@ -98,7 +125,7 @@ namespace DungeonsOfDoom
             string name;
             do
             {
-                Console.Write("Enter your name and press enter..\n> ");
+                ConsoleGameUtils.RollingText("Enter your name and press enter..\n> ", 75);
                 Console.ForegroundColor = ConsoleColor.White;
                 name = Console.ReadLine();
             } while (name.Length == 0); ;
@@ -115,14 +142,15 @@ namespace DungeonsOfDoom
                     world[x, y] = new Room();
 
                     if (y == world.GetLength(1) - 1 && x == world.GetLength(0) - 1)
-                    {
                         world[x, y].Monster = new Monsters.PontWitt(1000, 100);
-                    }
                     else
                     {
                         int percentage = random.Next(0, 100);
                         if (percentage < 10) // 6 - 10
+                        {
                             world[x, y].Monster = RandomMonster();
+                            nbrOfMonsters++;
+                        }
                         else if (percentage < 20) // 11 - 20
                             world[x, y].Item = RandomItem();
                         // 21 - 99 = Tomt Rum
@@ -266,6 +294,16 @@ namespace DungeonsOfDoom
             Play();
         }
 
+        private void GameWon()
+        {
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.WriteLine($"\nCongrats {player.Name} has defeated PontWitt and won the game!");
+            bgMusic.stop();
+            fxPlayer.PlayVictory();
+            Console.ReadKey(true);
+            Play();
+        }
+
         private void TitleScreen()
         {
             string[,] string2DArr = new string[24, 94] {
@@ -295,9 +333,9 @@ namespace DungeonsOfDoom
                               { "+","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","-","+"}
             };
 
-            FxPlayer.PlayTheme();
+            bgMusic.PlayTheme();
             Console.Clear();
-
+           
             int rowLength = string2DArr.GetLength(0);
             int colLength = string2DArr.GetLength(1);
             for (int i = 0; i < rowLength; i++)
@@ -313,6 +351,11 @@ namespace DungeonsOfDoom
                 Console.Write(Environment.NewLine);
             }
             Console.ForegroundColor = ConsoleColor.DarkGray;
+        }
+
+        public static void playSound(SoundPlayer s)
+        {
+            s.PlaySync();
         }
     }
 }
