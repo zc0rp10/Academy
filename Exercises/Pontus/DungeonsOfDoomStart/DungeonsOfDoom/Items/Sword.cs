@@ -9,17 +9,17 @@ namespace DungeonsOfDoom
     {
         Random random = new Random();
 
-        public Sword(SwordType type) : base($"{type} Sword")
+        public Sword(SwordType type) : base($"{type}")
         {
             // TODO: Remove SwordType argument. A random instead to decide
             // type of, every time a new Sword is created.
             Type = type;
 
-            if (type == SwordType.Copper)
+            if (type == SwordType.iMacG3)
                 Damage = random.Next(5, 11);
-            else if (type == SwordType.Iron)
+            else if (type == SwordType.Commodore64)
                 Damage = random.Next(11, 21);
-            else if (type == SwordType.GodEater)
+            else if (type == SwordType.GodEaterSword)
                 Damage = 9001;
         }
 
