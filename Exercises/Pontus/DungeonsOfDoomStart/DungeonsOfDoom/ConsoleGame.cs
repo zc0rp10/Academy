@@ -1,15 +1,6 @@
 ﻿using DungeonsOfDoom.Utils;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Media;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using WMPLib;
-
-
 
 namespace DungeonsOfDoom
 {
@@ -21,7 +12,7 @@ namespace DungeonsOfDoom
         FxPlayer bgMusic = new FxPlayer();
         FxPlayer fxPlayer = new FxPlayer();
         int nbrOfMonsters = 0;
-        
+
 
         public void Play()
         {
@@ -62,7 +53,6 @@ namespace DungeonsOfDoom
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("+----------------------------------------------------------------------------------------------+");
             Console.ReadKey(true);
-            
         }
 
         private void RoomEvent()
@@ -82,12 +72,15 @@ namespace DungeonsOfDoom
                 {
                     if (currentRoom.Monster.Name == "PontWitt")
                     {
+                        currentRoom.Monster = null;
                         GameWon();
                     }
                     else
+                    {
                         Console.WriteLine($"{player.Name} won the battle!");
+                        currentRoom.Monster = null;
+                    }
 
-                    currentRoom.Monster = null;
                     nbrOfMonsters--;
                     Console.ReadKey();
                 }
@@ -133,6 +126,7 @@ namespace DungeonsOfDoom
 
         private void CreateWorld()
         {
+            nbrOfMonsters = 0;
             world = new Room[20, 5];
             for (int y = 0; y < world.GetLength(1); y++)
             {
@@ -236,12 +230,12 @@ namespace DungeonsOfDoom
 
             foreach (var item in inventory)
             {
-                if (item.Key == "GodEater Sword")
+                if (item.Key == "GodEaterSword")
                 {
                     Console.ForegroundColor = ConsoleColor.DarkMagenta;
                     Console.WriteLine($"{item.Key} x {item.Value}");
                 }
-                else if (item.Key == "Commodore64 Sword")
+                else if (item.Key == "Commodore64")
                 {
                     Console.ForegroundColor = ConsoleColor.Blue;
                     Console.WriteLine($"{item.Key} x {item.Value}");
@@ -338,7 +332,7 @@ namespace DungeonsOfDoom
 
             bgMusic.PlayTheme();
             Console.Clear();
-           
+
             int rowLength = string2DArr.GetLength(0);
             int colLength = string2DArr.GetLength(1);
             for (int i = 0; i < rowLength; i++)

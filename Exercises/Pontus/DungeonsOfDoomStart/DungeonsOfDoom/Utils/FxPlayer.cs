@@ -8,13 +8,11 @@ namespace DungeonsOfDoom
 {
     class FxPlayer : WMPLib.WindowsMediaPlayerClass
     {
-         
         static string filePath = Directory.GetCurrentDirectory();
         public void PlayTheme()
         {
             URL = Directory.GetCurrentDirectory() + @"\Sounds\16bit_ Castlevania_IV_Simon_Belmonts_Theme.wav";
             play();
-            
         }
 
         public void PlayHit()
