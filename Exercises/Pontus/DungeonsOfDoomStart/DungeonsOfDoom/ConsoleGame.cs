@@ -154,12 +154,13 @@ namespace DungeonsOfDoom
 
         private Monster RandomMonster()
         {
-            int percentage = random.Next(0, 100);
+            List<Monster> monsters = new List<Monster>()
+            {
+                new AbstractClass(100, 20),
+                new PolymorphicType(200, 30)
+            };
 
-            if (percentage < 50)
-                return new PolymorphicType(200, 30);
-            else
-                return new AbstractClass(100, 20);
+            return monsters[random.Next(0, monsters.Count)];
         }
         private Item RandomItem()
         {
