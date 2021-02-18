@@ -29,15 +29,15 @@ namespace LinqLab
             //PeopleAndWorkplace(people, workPlaces);
             //WorkplaceEmployeeCount(people, workPlaces);
 
-            people.Print(p => p.Age);
+            people.Print(p => p.Name);
             workPlaces.Print(w => w.WorkplaceId);
 
            // Console.WriteLine(SomeMethod(people[1]));                      
         }
 
-        static object SomeMethod(Person person)
+        static object Predicate(Person p)
         {
-            return person.Age;
+            return p.Name;
         }
 
         private static void FirstOfName(Person[] people)
@@ -114,7 +114,7 @@ namespace LinqLab
 
             Console.WriteLine(q);
         }
-
+        
         private static void Name30Plus(Person[] people)
         {
             Console.WriteLine();
