@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>JavaScript DOM Training</title>
+        <style>
+            #color-box {
+                width: 300px;
+                height: 300px;
+                border: solid 1px;
+                margin-top: 10px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <button onclick="redy()">Red</button>
+        <button onclick="greeny()">Green</button>
+        <button onclick="bluey()">Blue</button>
+
+        <div id="color-box"></div>
+
+        <script>
+            // Din kod ...
+            $ = document.getElementById.bind(document);
+            const colorBox = $("color-box");
+            const redy = () => {
+                console.log(colorBox);
+                colorBox.style.backgroundColor = "red";
+            };
+
+            function greeny() {
+                colorBox.style.backgroundColor = "green";
+            }
+
+            function bluey() {
+                colorBox.style.backgroundColor = "blue";
+            }
+        </script>
+    </body>
+</html>

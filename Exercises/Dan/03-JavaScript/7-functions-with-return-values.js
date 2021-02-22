@@ -39,7 +39,7 @@ function funRet2() {
         ****** WHAT DOES THE FOX SAYS? ******
 
     */
-
+    
     const superImportant = (text, toUpper) => {
         let fancyText = `****** ${text} ******`;
         if (toUpper === true) fancyText = fancyText.toUpperCase();

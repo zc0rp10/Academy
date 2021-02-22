@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="css/main.css" rel="stylesheet" />
+    </head>
+    <body class="page-black">
+        <div class="playground playground-black">
+            <button onclick="lightAllBulbs()">Light all bulbs</button>
+
+            <img id="bulb1" src="img/bulb-off.jpg" class="bulb" />
+            <img id="bulb2" src="img/bulb-off.jpg" class="bulb" />
+            <img id="bulb3" src="img/bulb-off.jpg" class="bulb" />
+        </div>
+
+        <script>
+            // Din kod ...
+            $ = document.getElementById.bind(document);
+            const bulbOne = $("bulb1");
+            const bulbTwo = $("bulb2");
+            const bulbThree = $("bulb3");
+
+            function lightAllBulbs() {
+                const on = "img/bulb-on.jpg";
+
+                bulbOne.src = on;
+                bulbTwo.src = on;
+                bulbThree.src = on;
+            }
+        </script>
+    </body>
+</html>

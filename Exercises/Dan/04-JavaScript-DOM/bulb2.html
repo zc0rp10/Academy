@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>JavaScript DOM Training</title>
+        <link href="css/main.css" rel="stylesheet" />
+    </head>
+
+    <body class="page-black">
+        <div class="playground playground-black">
+            <button onclick="lightTheBulb(bulbOne)">Light bulb 1</button>
+            <button onclick="lightTheBulb(bulbTwo)">Light bulb 2</button>
+            <button onclick="lightTheBulb(bulbThree)">Light bulb 3</button>
+
+            <img id="bulb1" src="img/bulb-off.jpg" class="bulb" />
+            <img id="bulb2" src="img/bulb-off.jpg" class="bulb" />
+            <img id="bulb3" src="img/bulb-off.jpg" class="bulb" />
+        </div>
+
+        <script>
+            // Din kod
+            $ = document.getElementById.bind(document);
+            const bulbOne = $("bulb1");
+            const bulbTwo = $("bulb2");
+            const bulbThree = $("bulb3");
+
+            function lightTheBulb(element) {
+                const on = "img/bulb-on.jpg";
+                const off = "img/bulb-off.jpg";
+                element.src =
+                    element.attributes[1].textContent == on
+                        ? (element.src = off)
+                        : (element.src = on);
+            }
+        </script>
+    </body>
+</html>

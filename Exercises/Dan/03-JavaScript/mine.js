@@ -1,11 +1,9 @@
-// function var1(){
-//     x = 12;
-//     console.log(x)
-// }
+function enEtt(ord) {
+    let ordLista = ["tidning", "falafel", "hipsteröl"];
+    for (const item of ordLista) {
+        if (item == ord) console.log("Yes");
+        else console.log("No");
+    }
+}
 
-// function var2(){
-//     console.log(x)
-// }
-
-// var1();
-// var2();
+enEtt("tidning");
