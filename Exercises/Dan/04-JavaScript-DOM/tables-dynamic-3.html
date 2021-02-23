@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>JavaScript DOM Training</title>
+        <link href="css/main.css" rel="stylesheet" />
+    </head>
+
+    <body>
+        <div class="playground">
+            <!-- <div>
+            Hur många rader skall skapas i tabellen:
+        </div>
+        <input type="text" id="txtRows" /> -->
+
+            <button id="btAddRows">Show Table</button>
+get
+            <div id="response" class="response">
+                <table id="myTable"></table>
+            </div>
+        </div>
+
+        <script>
+            // UPPGIFT: Skapa en tabell som visar informationen i objektet nedan.
+
+            // Tabellen skall ha en rubrik för varje kolumn.
+
+            // Det skall vara en rad per konstnär.
+
+            // Tips: Använd document.createElement för att skapa de olika elementen som behövs.
+
+            let paintings = [
+                {
+                    name: "Stjärnenatt",
+                    artist: "Vincent van Gogh",
+                    year: 1889,
+                },
+                {
+                    name: "Nattvarden",
+                    artist: "Leonardo da Vinci",
+                    year: 1499,
+                },
+                {
+                    name: "Gurenica",
+                    artist: "Pablo Picasso",
+                    year: 1937,
+                },
+            ];
+
+            // Din kod ...
+            const myTable = document.getElementById("myTable");
+            const btAddRows = document.getElementById("btAddRows");
+            btAddRows.addEventListener("click", showTable);
+
+            function showTable() {
+                createTableHeader();
+                for (const iterator of paintings) {
+                    createTableRow(iterator);
+                }
+            }
+
+            function createTableHeader() {
+                const newTr = document.createElement("tr");
+                const newThName = document.createElement("th");
+                const newThArtist = document.createElement("th");
+                const newThYear = document.createElement("th");
+
+                myTable.appendChild(newTr);
+                newTr.appendChild(newThName);
+                newTr.appendChild(newThArtist);
+                newTr.appendChild(newThYear);
+
+                newThName.textContent = "Name";
+                newThArtist.textContent = "Artist";
+                newThYear.textContent = "Year";
+            }
+
+            const createTableRow = (obj) => {
+                document.get
+                const newTr = document.createElement("tr");
+                const newTdName = document.createElement("td");
+                const newTdArtist = document.createElement("td");
+                const newTdYear = document.createElement("td");
+
+                myTable.appendChild(newTr);
+                newTr.appendChild(newTdName);
+                newTr.appendChild(newTdArtist);
+                newTr.appendChild(newTdYear);
+
+                newTdName.textContent = obj.name;
+                newTdArtist.textContent = obj.artist;
+                newTdYear.textContent = obj.year;
+            };
+        </script>
+    </body>
+</html>
