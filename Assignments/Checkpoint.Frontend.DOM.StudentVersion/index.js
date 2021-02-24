@@ -20,17 +20,23 @@ theDiv.style.marginTop = "150px"; // Paragraphen täckte delar av knapparna i vi
 theDiv.appendChild(btD);
 theDiv.appendChild(btE);
 
-let pRotation = 0;
 btD.addEventListener("click", () => {
-    pRotation -= 45;
-    updatePRotation();
+    rotateElement(para, -45);
 });
 
 btE.addEventListener("click", () => {
-    pRotation += 45;
-    updatePRotation();
+    rotateElement(para, 45);
 });
 
-const updatePRotation = () => {
-    para.style.transform = `rotate(${pRotation}deg)`;
+const rotateElement = (element, deg) => {
+    const transformString = element.style.transform;
+    const hasRot = transformString.match(/rotate\((.*)deg/);
+    if (hasRot != null) {
+        let transformStrArr = transformString.split(" ");
+        for (let i = 0; i < transformStrArr.length; i++) {
+            if (transformStrArr[i].match(/rotate/))
+                transformStrArr[i] = `rotate(${parseInt(hasRot.pop()) + deg}deg)`;
+        }
+        element.style.transform = transformStrArr.join(" ");
+    } else element.style.transform = transformString + `rotate(${deg}deg)`;
 };
