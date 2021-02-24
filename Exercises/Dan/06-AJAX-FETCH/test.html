@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="thisIsADiv"></div>
+
+        <script>
+            const theDiv = document.getElementById("thisIsADiv");
+
+            fetch("https://swapi.dev/api/people")
+                .then((response) => response.json())
+                .then((data) => {
+                    for (const item of data.results) {
+                        const row = document.createElement("tr");
+                        const nameTd = document.createElement("td");
+                        const genderTd = document.createElement("td");
+                        theDiv.appendChild(row);
+                        row.appendChild(nameTd);
+                        row.appendChild(genderTd);
+                        nameTd.textContent = item.name;
+                        genderTd.textContent = item.gender;
+                    }
+                });
+        </script>
+    </body>
+</html>
