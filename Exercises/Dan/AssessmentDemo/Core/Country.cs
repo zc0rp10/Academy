@@ -12,8 +12,8 @@ namespace Assessment.Core
             SkiResorts = new List<SkiResort>();
         }
 
-        public string Name { get; set; }
-        public List<SkiResort> SkiResorts { get; set; }
+        private string Name { get; set; }
+        private List<SkiResort> SkiResorts { get; set; }
 
         public void AddSkiResort(string location, int nbrOfLifts)
         {
@@ -23,9 +23,13 @@ namespace Assessment.Core
         public int TotalNumberOfLifts()
         {
             int totalNumberOfLifts = 0;
-            foreach (var item in SkiResorts)
+            //foreach (var item in SkiResorts)
+            //{
+            //    totalNumberOfLifts += item.NumberOfLifts;
+            //}
+            for (int i = 0; i < SkiResorts.Count; i++)
             {
-                totalNumberOfLifts += item.NumberOfLifts;
+                totalNumberOfLifts += SkiResorts[i].NumberOfLifts;
             }
 
             return totalNumberOfLifts;

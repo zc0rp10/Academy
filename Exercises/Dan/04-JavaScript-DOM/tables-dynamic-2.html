@@ -62,7 +62,7 @@
                 if (!newRowsCount) return;
                 for (let i = 0; i < newRowsCount; i++) {
                     createNewRow(i);
-                    }
+                }
             }
 
             function isPositiveInt(num) {
@@ -74,6 +74,7 @@
                 const newTr = document.createElement("tr");
                 const newIdTd = document.createElement("td");
                 const newNameTd = document.createElement("td");
+                console.log(newTr);
 
                 tableBody.appendChild(newTr);
                 newTr.appendChild(newIdTd);
@@ -81,9 +82,13 @@
                 newIdTd.textContent = `${tableBody.childElementCount}`;
                 newNameTd.textContent = `Namn - ${id}`;
 
+                newTr.addEventListener("click", (e) => {
+                    e.target;
+                });
+
                 newTr.addEventListener("click", () => {
                     alert(`My index is: ${id}`);
-                });                                                         
+                });
             }
 
             // Extra: Gör så att en alert-ruta visas med radens index vid klick på raden.
