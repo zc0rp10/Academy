@@ -1,0 +1,42 @@
+﻿@model FavoriteBandsApp.Web.Models.Band
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Favorite Bands App!</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+</head>
+<body>
+    <header class="jumbotron mb-5 p-5 bg-warning">
+        <div class="container text-start">
+            <h1 class="display-4 fw-bolder">My Favorite Bands App!</h1>
+            <p class="lead text-light ms-5">> This was harder than expected...</p>
+        </div>
+    </header>
+
+    <article class="container mb-5">
+            <h1>@Model.Name</h1>
+            <iframe width="560" height="315" src="@Model.YtPath" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <p>@Model.Description</p>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Title</th>
+                        <th scope="col">Year</th>
+                        <th scope="col">Label</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var album in Model.Albums)
+                    {
+                    <tr>
+                        <th scope="row">@album.Name</th>
+                        <td>@album.Year</td>
+                        <td>@album.Label</td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+                <a href="~/bands" class="btn btn-secondary col-1">Back</a>
+    </article>
+</body>
+</html>

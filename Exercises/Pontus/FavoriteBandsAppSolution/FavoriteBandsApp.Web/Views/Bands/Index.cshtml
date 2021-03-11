@@ -1,0 +1,39 @@
+﻿@model FavoriteBandsApp.Web.Models.Band[]
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Favorite Bands App!</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+</head>
+<body>
+    <header class="jumbotron mb-5 p-5 bg-warning">
+        <div class="container text-start">
+            <h1 class="display-4 fw-bolder">My Favorite Bands App!</h1>
+            <p class="lead text-light ms-5">> This was harder than expected...</p>
+        </div>
+    </header>
+
+    <section class="container">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            @foreach (var band in Model)
+            {
+                string descTrunked = (@band.Description.Length > 250) ? @band.Description.Substring(0, 246) + "..." : @band.Description;
+                <div class="col">
+                    <div class="card h-100 shadow-sm">
+                        <img src="~/img/@band.ImgPath" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">@band.Name</h5>
+                            <p class="card-text">@descTrunked</p>
+                        </div>
+                        <div class="card-footer bg-white border-0">
+                            <a href="bands/@band.Id" class="btn btn-warning btn-sm">Read More</a>
+                            @*<small class="text-muted">Read More...</small>*@
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+
+</body>
+</html>
