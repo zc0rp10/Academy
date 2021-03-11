@@ -1,0 +1,40 @@
+﻿@model Employee
+
+@{
+    ViewBag.Title = Model.FirstName + " " + Model.LastName;
+}
+
+<div>
+    <hr />
+    <h4>Details</h4>
+    <dl class="row">
+        <dt>
+            <strong>@Html.DisplayNameFor(model => model.Id)</strong>
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt>
+            <strong>@Html.DisplayNameFor(model => model.FirstName)</strong>
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+        <dt>
+            <strong>@Html.DisplayNameFor(model => model.LastName)</strong>
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+        <dt>
+            <strong>@Html.DisplayNameFor(model => model.EMail)</strong>
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EMail)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
